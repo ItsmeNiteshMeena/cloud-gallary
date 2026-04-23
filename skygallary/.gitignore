@@ -1,0 +1,44 @@
+# 🔹 Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 🔹 Virtual environment
+venv/
+env/
+ENV/
+
+# 🔹 Django stuff
+*.log
+db.sqlite3
+media/
+
+# 🔹 Static files (optional if generated)
+staticfiles/
+
+# 🔹 Environment variables (VERY IMPORTANT 🚨)
+.env
+
+# 🔹 VS Code / IDE
+.vscode/
+.idea/
+
+# 🔹 OS files
+.DS_Store
+Thumbs.db
+
+# 🔹 Migrations (optional - depends)
+# Uncomment if you don’t want migrations
+# */migrations/
+# !*/migrations/__init__.py
+
+# 🔹 Cloudinary (no local storage, but safe)
+*.cloudinary
+
+# 🔹 Node (if frontend later)
+node_modules/
+
+# 🔹 Coverage / testing
+.coverage
+htmlcov/
