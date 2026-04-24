@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyGallary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0d1117;
+            color : white;
+        }
+        .card {
+            background-color: #161b22;
+            color:white;
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .card-img-top {
+    height: 250px;        /* fixed height */
+    width: 100%;
+    object-fit: cover;    /* crop image nicely */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: transform 0.3s ease;
+       }
+        .card-title {
+            color: #58a6ff;
+        }
+        .card-text {
+            color: #c9d1d9;
+        }
+        .card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .card:hover .card-img-top {
+    transform: scale(1.1);
+}
+         .form-label {
+            color: #58a6ff;
+        }
+         .btn-primary {
+            background-color: #238636;
+            border: none;
+        }
+         .btn-primary:hover {
+            background-color: #2ea043;
+        }
+         .text-info {
+            color: #58a6ff;
+        }
+            .text-warning {
+                color: #f0ad4e;
+            }
+            .shadow {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+       
+       </style>
+</head>
+<body>
+    <div>
+        <div class="container mt-4">
+            <h1 class="mb-4 text-center text-info">SkyGallary Cloud Upload</h1>
+             <div class="row">
+                <div class="col-md-4">
+                    <div class="card p-4 shadow">
+                        <h4 class="text-warning">Upload Image</h4>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_title" class="form-label">Title</label>
+                                <input type="text" name="title" maxlength="255" class="form-control" required id="id_title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_category" class="form-label">Category</label>
+                                <input type="text" name="category" maxlength="255" class="form-control" required id="id_category">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_caption" class="form-label">Caption</label>
+                                <textarea name="caption" cols="40" rows="10" class="form-control" id="id_caption"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_image" class="form-label">Image</label>
+                                <input type="file" name="image" accept="image/*" class="form-control" required id="id_image">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Upload</button>
+
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                {% for photo in photos %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="{{ photo.image.url }}" class="card-img-top" alt="{{ photo.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ photo.title }}</h5>
+                            <p class="card-text">{{ photo.category }}</p>
+                            <p class="card-text">{{ photo.caption }}</p>
+                            <p class="card-text"><small class="text-muted">{{ photo.created_at }}</small></p> 
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div> 
+
+                </div>
+
+             </div>                    
+      </div>
+    </div>
+</body>
+</html>
